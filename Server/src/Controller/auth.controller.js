@@ -69,8 +69,8 @@ async function handleSignUp(req, res) {
                 name: true,
                 email: true,
                 phone_no: true,
-                role: true,
-                createdAt: true,
+                // role: true,
+                created_at: true,
             },
         });
 
