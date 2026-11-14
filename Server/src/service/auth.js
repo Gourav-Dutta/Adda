@@ -3,12 +3,13 @@ import jwt from "jsonwebtoken";
 import crypto from "node:crypto";
 
 // Generate Access Token
-function generateAccessToken(user) {
+function generateAccessToken(user, session) {
     return jwt.sign(
         {
             id: user.id,
             email: user.email,
             name: user.name,
+            session_id: session|| null
         },
         process.env.JWT_SECREAT_KEY,
         {

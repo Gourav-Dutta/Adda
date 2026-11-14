@@ -13,9 +13,11 @@ model User {
   email    String @unique
   phone_no String
   password String
+  isVerified Boolean @default(false)
   updated_at DateTime @updatedAt
   created_at DateTime @default(now())
   sessions session[]
+  otps Otp[]
 }
 
 model session {
@@ -29,4 +31,14 @@ model session {
   created_at DateTime @default(now())
 
   user User @relation(fields: [user_id], references: [id])
+}
+
+model Otp {
+  id         Int      @id @default(autoincrement())
+  user_id    Int
+  email      String   @unique
+  otp_code   String
+  expires_at DateTime
+  created_at DateTime @default(now())
+  user       User @relation(fields: [user_id], references: [id])
 }
